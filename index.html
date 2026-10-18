@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#12281e">
+<title>Hyuga · Dsegh</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== SPLASH ===== -->
+<div id="splash" class="splash">
+  <div class="splash-logo">HYUGA</div>
+  <div class="splash-sub">DSEGH · ARMENIA</div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="topbar" id="topbar">
+  <div class="brand">HYUGA</div>
+  <div class="lang-switch">
+    <button data-lang="ru" class="lang-btn">RU</button>
+    <button data-lang="hy" class="lang-btn">ՀՅ</button>
+    <button data-lang="en" class="lang-btn">EN</button>
+  </div>
+</header>
+
+<!-- ===== PAGES ===== -->
+<main id="app">
+
+  <!-- ============ HOME ============ -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="ph hero-img" data-label="Hyuga · фото отеля">
+        <img src="images/hero.jpg" alt="Hyuga Hotel">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow" data-i18n="hero.eyebrow">LORI · ARMENIA</div>
+        <h1 class="hero-title">HYUGA</h1>
+        <p class="hero-sub" data-i18n="hero.sub">Уединённый бутик-отель среди гор Дсеха</p>
+        <button class="btn btn-gold" data-goto="rooms" data-i18n="hero.cta">Посмотреть номера</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow" data-i18n="home.about.eyebrow">ОБ ОТЕЛЕ</div>
+        <h2 class="section-title" data-i18n="home.about.title">Тишина, природа, комфорт</h2>
+      </div>
+      <p class="lead" data-i18n="home.about.text">
+        Hyuga — небольшой бутик-отель в селе Дсех, в самом сердце Лори.
+        Четыре приватных дома среди зелени, с панорамным видом на горы.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title" data-i18n="home.f1.title">Удобства</div>
+          <div class="feature-text" data-i18n="home.f1.text">отдельные коттеджы с собственным джакузи</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title" data-i18n="home.f2.title">Природа</div>
+          <div class="feature-text" data-i18n="home.f2.text">Вид на горы, сад, чистый воздух Лори</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title" data-i18n="home.f3.title">Кухня</div>
+          <div class="feature-text" data-i18n="home.f3.text">Ресторан с местной кухней </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title" data-i18n="home.f4.title">Отдых</div>
+          <div class="feature-text" data-i18n="home.f4.text">Джакузи, настольные игры, и красивый вид на горы</div>
+        </div>
+      </div>
+
+      <div class="cta-card">
+        <div class="cta-title" data-i18n="home.cta.title">Забронировать дом</div>
+        <div class="cta-text" data-i18n="home.cta.text">Оставьте заявку — администратор подтвердит бронь в мессенджере</div>
+        <button class="btn btn-gold" data-goto="booking" data-i18n="home.cta.btn">Оставить заявку</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROOMS ============ -->
+  <section class="page" id="page-rooms">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow" data-i18n="rooms.eyebrow">РАЗМЕЩЕНИЕ</div>
+        <h2 class="section-title" data-i18n="rooms.title">Наши дома</h2>
+        <p class="section-desc" data-i18n="rooms.desc">Два больших и два малых дома. Все — с отдельным входом, террасой и видом на горы.</p>
+      </div>
+      <div id="rooms-list" class="rooms-list"><!-- JS --></div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKING ============ -->
+  <section class="page" id="page-booking">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow" data-i18n="book.eyebrow">ЗАЯВКА</div>
+        <h2 class="section-title" data-i18n="book.title">Бронирование</h2>
+        <p class="section-desc" data-i18n="book.desc">Заполните форму — администратор свяжется с вами для подтверждения.</p>
+      </div>
+
+      <form id="booking-form" class="booking-form" novalidate>
+
+        <label class="field">
+          <span class="field-label" data-i18n="book.room">Дом</span>
+          <select id="bk-room" required>
+            <option value="" data-i18n="book.room.select">— Выберите дом —</option>
+            <!-- JS -->
+          </select>
+          <span class="err" data-err="bk-room"></span>
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span class="field-label" data-i18n="book.checkin">Дата заезда</span>
+            <input type="date" id="bk-checkin" required>
+            <span class="err" data-err="bk-checkin"></span>
+          </label>
+          <label class="field">
+            <span class="field-label" data-i18n="book.checkout">Дата выезда</span>
+            <input type="date" id="bk-checkout" required>
+            <span class="err" data-err="bk-checkout"></span>
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label class="field">
+            <span class="field-label" data-i18n="book.adults">Взрослые</span>
+            <input type="number" id="bk-adults" min="1" max="12" value="2" required>
+            <span class="err" data-err="bk-adults"></span>
+          </label>
+          <label class="field">
+            <span class="field-label" data-i18n="book.children">Дети</span>
+            <input type="number" id="bk-children" min="0" max="12" value="0">
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field-label" data-i18n="book.name">Имя гостя</span>
+          <input type="text" id="bk-name" placeholder="Aram" required autocomplete="name">
+          <span class="err" data-err="bk-name"></span>
+        </label>
+
+        <label class="field">
+          <span class="field-label" data-i18n="book.contact">Телефон / Telegram</span>
+          <input type="text" id="bk-contact" placeholder="+374 __ ______" required autocomplete="tel">
+          <span class="err" data-err="bk-contact"></span>
+        </label>
+
+        <label class="field">
+          <span class="field-label" data-i18n="book.notes">Комментарий (необязательно)</span>
+          <textarea id="bk-notes" rows="3" placeholder="..."></textarea>
+        </label>
+
+        <div class="notice" data-i18n="book.notice">
+          Заявка не является подтверждённой бронью. Администратор свяжется с вами для подтверждения и уточнения стоимости.
+        </div>
+
+        <button type="submit" class="btn btn-gold btn-block" id="bk-submit" data-i18n="book.submit">Отправить заявку</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTS ============ -->
+  <section class="page" id="page-contacts">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow" data-i18n="contacts.eyebrow">СВЯЗАТЬСЯ</div>
+        <h2 class="section-title" data-i18n="contacts.title">Контакты</h2>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="contact-ico">📍</div>
+          <div>
+            <div class="contact-label" data-i18n="contacts.addr">Адрес</div>
+            <div class="contact-val">6th St. 91, Dsegh 1718, Lori, Armenia</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-ico">📞</div>
+          <div>
+            <div class="contact-label" data-i18n="contacts.phone">Телефон</div>
+            <a class="contact-val" href="tel:+37498699601">+374 98 699601</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-actions">
+        <a class="btn btn-outline" id="lnk-call" href="tel:+37498699601">
+          <span data-i18n="contacts.call">Позвонить</span>
+        </a>
+        <a class="btn btn-outline" id="lnk-wa" target="_blank" rel="noopener">
+          <span>WhatsApp</span>
+        </a>
+        <a class="btn btn-outline" id="lnk-tg" target="_blank" rel="noopener">
+          <span>Telegram</span>
+        </a>
+        <a class="btn btn-outline" id="lnk-viber" target="_blank" rel="noopener">
+          <span>Viber</span>
+        </a>
+      </div>
+
+      <a class="btn btn-gold btn-block" id="lnk-map" target="_blank" rel="noopener" data-i18n="contacts.map">
+        Открыть на карте
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav">
+  <button class="nav-item active" data-goto="home">
+    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 11l9-8 9 8v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2V11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    <span data-i18n="nav.home">Главная</span>
+  </button>
+  <button class="nav-item" data-goto="rooms">
+    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 20V8l9-5 9 5v12M3 20h18M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    <span data-i18n="nav.rooms">Номера</span>
+  </button>
+  <button class="nav-item" data-goto="booking">
+    <svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <span data-i18n="nav.booking">Бронь</span>
+  </button>
+  <button class="nav-item" data-goto="contacts">
+    <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v0M11 12h1v5h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <span data-i18n="nav.contacts">Контакты</span>
+  </button>
+</nav>
+
+<!-- ===== ROOM MODAL ===== -->
+<div class="modal" id="modal-room">
+  <div class="modal-sheet">
+    <button class="modal-close" data-close>✕</button>
+    <div id="modal-content"><!-- JS --></div>
+  </div>
+</div>
+
+<!-- ===== GALLERY ===== -->
+<div class="gallery-modal" id="gallery">
+  <button class="gallery-close" data-gallery-close>✕</button>
+  <div class="gallery-track" id="gallery-track"></div>
+  <div class="gallery-dots" id="gallery-dots"></div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
